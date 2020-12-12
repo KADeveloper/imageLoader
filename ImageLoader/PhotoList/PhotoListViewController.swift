@@ -37,8 +37,10 @@ class PhotoListViewController: UIViewController {
         
         refreshControl.addTarget(self, action: #selector(refreshPhotoList), for: .valueChanged)
         
-        startMonitor()
-        checkInternetConnection()
+        if viewModel.getPhotosCountFromFileManager() <= 0 {
+            startMonitor()
+            checkInternetConnection()
+        }
     }
     
     override func viewWillLayoutSubviews() {
